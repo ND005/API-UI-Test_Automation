@@ -4,6 +4,7 @@ Feature: TC - 01 - Verify Swag Labs with user login
     Given Logging to Swag Labs with <UserID> and <Password>
     When Verify the user profile and home page
     Then Verify the basic user UI elements
+    And Terminate the browser
 
     Examples: 
       | User Type    | UserID          | Password     |
