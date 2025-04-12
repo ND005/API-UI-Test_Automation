@@ -57,7 +57,7 @@
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
 					<includes>
-						<include>**/TestRunner.java</include>
+						<!--<include>**/TestRunnerUI.java</include>-->
 					</includes>
 				</configuration>
 				<executions>
