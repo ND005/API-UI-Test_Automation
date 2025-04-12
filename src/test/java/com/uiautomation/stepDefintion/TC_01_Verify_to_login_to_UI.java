@@ -6,7 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,18 +21,39 @@ public class TC_01_Verify_to_login_to_UI {
 	WebDriver driver = null;
 	Properties prop = new Properties();
 	File configFile = new File("src\\test\\resources\\baseURL.properties");
+	
+	@FindBy(id = "user-name")
+	WebElement username;
+	@FindBy(id = "password")
+	WebElement password;
+	@FindBy(id = "login-button")
+	WebElement lgnBtn;
 
 	@Given("^Logging to Swag Labs with (.*) and (.*)$")
 	public void logging_to_swag_labs_with_userID_and_password(String UserID, String Password) throws IOException {
-		InputStream stream = new FileInputStream(configFile);
-		prop.load(stream);
+		try {
+			InputStream stream = new FileInputStream(configFile);
+			prop.load(stream);
 
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get(prop.getProperty("swagLab"));
-
-		// Need to pass the driver to fetch the data
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+			driver.get(prop.getProperty("swagLab"));
+			PageFactory.initElements(driver, this);
+			
+			// Need to pass the driver to fetch the data
+			
+			username.sendKeys(UserID);
+			Thread.sleep(1000);
+			password.sendKeys(Password);
+			Thread.sleep(1000);
+			lgnBtn.click();
+			Thread.sleep(1000);
+			
+		}
+		catch (Exception e) {
+			System.out.println(" <INFO> " + e.toString());
+		}
 	}
 
 	@When("Verify the user profile and home page")
