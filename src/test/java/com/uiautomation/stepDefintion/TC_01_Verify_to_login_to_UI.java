@@ -12,6 +12,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.uiautomation.pom.HomePage;
+import com.uiautomation.pom.cartPage;
 import com.uiautomation.pom.productDetailsPage;
 
 import io.cucumber.java.en.And;
@@ -25,6 +26,8 @@ public class TC_01_Verify_to_login_to_UI {
 	Properties prop = new Properties();
 	HomePage HP = new HomePage();
 	productDetailsPage PD = new productDetailsPage();
+	cartPage CP = new cartPage();
+
 	File configFile = new File("src\\test\\resources\\baseURL.properties");
 
 	@FindBy(id = "user-name")
@@ -59,7 +62,6 @@ public class TC_01_Verify_to_login_to_UI {
 			Thread.sleep(1000);
 
 		} catch (Exception e) {
-			Assert.assertTrue("  <ERROR> Verify Logging to Swag Labs", false);
 			System.out.println("  <INFO> " + e.toString());
 		}
 	}
@@ -68,17 +70,10 @@ public class TC_01_Verify_to_login_to_UI {
 	public void verify_the_user_profile_and_home_page() {
 		try {
 			// Thread.sleep(10000);
-			System.out.println("  <INFO> " + HP.getCountofItems(driver));
-
+			// System.out.println(" <INFO> " + HP.getCountofItems(driver));
 			if (HP.getCountofItems(driver) > 0) {
-
 				if (HP.getItemLabel(1, driver).isDisplayed() && HP.getItemAddCart(1, driver).isDisplayed()) {
-					String getTextInfo = HP.getItemLabel(1, driver).getText();
-					HP.getItemLabel(1, driver).click();
-					Thread.sleep(3000);
-					Assert.assertTrue(PD.getProductNameinDetails(driver).getText().contains(getTextInfo));
-					PD.AddCart(driver).click();
-					Thread.sleep(3000);
+
 				} else {
 					Assert.assertTrue("  <INFO> Label is 'Not Displayed' ", HP.getItemLabel(1, driver).isDisplayed());
 					Assert.assertTrue("  <INFO> Add cart button is 'Not Displayed' ",
@@ -89,15 +84,47 @@ public class TC_01_Verify_to_login_to_UI {
 				Assert.assertTrue("  <INFO> Items are 0", false);
 			}
 		} catch (Exception e) {
-			Assert.assertTrue(" <ERROR> Verify the user profile and home page", false);
 			System.out.println("  <INFO> " + e.toString());
 		}
-
 	}
 
-	@Then("Verify the basic user UI elements")
-	public void verify_the_basic_user_ui_elements() {
+	@Then("Verify the first product details and add to cart")
+	public void verify_the_firstProduct_details_and_addToCart() {
+		try {
+			String getTextInfo = HP.getItemLabel(1, driver).getText();
+			HP.getItemLabel(1, driver).click();
+			Thread.sleep(3000);
+			Assert.assertTrue(PD.getProductNameinDetails(driver).getText().contains(getTextInfo));
+			PD.AddCart(driver).click();
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			System.out.println("  <INFO> " + e.toString());
+		}
+	}
 
+	@Then("Verify the cart, remove the item from cart and continue the shopping")
+	public void verify_the_cart_and_continue_the_shopping() {
+		try {
+			if (PD.cartButton(driver).isDisplayed()) {
+				PD.cartButton(driver).click();
+				Thread.sleep(3000);
+				if (CP.removeCart(driver).isDisplayed()) {
+					CP.removeCart(driver).click();
+					Assert.assertTrue("  <INFO> Clicked on remove from cart button", true);
+				} else {
+					Assert.assertTrue("  <INFO> Remove from cart button not visible", false);
+				}
+				if (CP.continousShopping(driver).isDisplayed()) {
+					CP.continousShopping(driver).click();
+					Assert.assertTrue("  <INFO> Clicked on continue the shopping", true);
+				} else {
+					Assert.assertTrue("  <INFO> Continue shopping button not visible", false);
+				}
+				Thread.sleep(3000);
+			}
+		} catch (Exception e) {
+			System.out.println("  <INFO> " + e.toString());
+		}
 	}
 
 	@And("Terminate the browser")

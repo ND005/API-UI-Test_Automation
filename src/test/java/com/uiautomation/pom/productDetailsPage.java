@@ -15,4 +15,8 @@ public class productDetailsPage {
 	public WebElement AddCart(WebDriver driver) {
 		return driver.findElement(By.xpath("//div[@id='inventory_item_container']//button"));
 	}
+
+	public WebElement cartButton(WebDriver driver) {
+		return driver.findElement(By.id("shopping_cart_container"));
+	}
 }

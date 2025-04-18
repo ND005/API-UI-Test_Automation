@@ -3,7 +3,8 @@ Feature: TC - 01 - Verify Swag Labs with user login
   Scenario Outline: Logging to Swag Labs using <User Type>
     Given Logging to Swag Labs with <UserID> and <Password>
     When Verify the user profile and home page
-    Then Verify the basic user UI elements
+    Then Verify the first product details and add to cart
+    Then Verify the cart, remove the item from cart and continue the shopping
     And Terminate the browser
 
     Examples: 
