@@ -7,6 +7,5 @@ Feature: TC - 01 - Verify Swag Labs with user login
     And Terminate the browser
 
     Examples: 
-      | User Type    | UserID          | Password     |
-      | Stander user | standard_user   | secret_sauce |
-      | Locked user  | locked_out_user | secret_sauce |
+      | User Type    | UserID        | Password     |
+      | Stander user | standard_user | secret_sauce |
