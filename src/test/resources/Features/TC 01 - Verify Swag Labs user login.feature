@@ -1,4 +1,4 @@
-Feature: TC - 01 - Verify Swag Labs with user login
+Feature: TC - 01 - Verify Swag Labs cart functionality
 
   Scenario Outline: Logging to Swag Labs using <User Type>
     Given Logging to Swag Labs with <UserID> and <Password>
