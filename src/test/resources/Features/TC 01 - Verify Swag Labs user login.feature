@@ -1,4 +1,4 @@
-Feature: TC - 01 - Verify Swag Labs cart functionality
+Feature: TC - 01 - Verify Swag Labs UI functionality
 
   Scenario Outline: TS01 - Verify cart functionality of Swag Labs using <User Type>
     Given Logging to Swag Labs with <UserID> and <Password>
@@ -31,8 +31,3 @@ Feature: TC - 01 - Verify Swag Labs cart functionality
     Examples: 
       | UserID        | Password     |
       | standard_user | secret_sauce |
-    #Examples: 
-      #| UserID        | Password     |
-      #| standard_user | secret_sauce |
-	# checkout information and checkout overview data was provided in excel
-	# As a data driven techniqe
