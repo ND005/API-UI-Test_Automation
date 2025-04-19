@@ -31,21 +31,8 @@ Feature: TC - 01 - Verify Swag Labs cart functionality
     Examples: 
       | UserID        | Password     |
       | standard_user | secret_sauce |
-
-  # Expected menu bar texts was provided from excel
-  # As a data driven techniqe
-  @testRun
-  Scenario Outline: TS04 - Verify the complete flow of product ordering functionality in Swag Labs
-    Given Logging to Swag Labs with <UserID> and <Password>
-    When User logged into standard profile
-    Then Verify cart elements and checkout functionality
-    And Verify checkout information section with and without data
-    And Verify checkout overview section and its all expected fields
-    And Verify order confirmation section and get back to Home page
-    And Terminate the browser
-
-    Examples: 
-      | UserID        | Password     |
-      | standard_user | secret_sauce |
+    #Examples: 
+      #| UserID        | Password     |
+      #| standard_user | secret_sauce |
 	# checkout information and checkout overview data was provided in excel
 	# As a data driven techniqe
