@@ -26,4 +26,12 @@ public class overViewPage {
 	public WebElement priceTotalInformation(WebDriver driverType) {
 		return driverType.findElement(By.xpath("//div[@class='summary_info']/div[5]"));
 	}
+
+	public WebElement OrderConformationUI(WebDriver driverType) {
+		return driverType.findElement(By.xpath("//div[@id='checkout_complete_container']/h2"));
+	}
+
+	public WebElement GetBacktoHome(WebDriver driverType) {
+		return driverType.findElement(By.id("back-to-products"));
+	}
 }

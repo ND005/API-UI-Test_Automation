@@ -225,7 +225,7 @@ public class TC_01_Verify_login_and_basic_functionality {
 				HP.addCartOfSpecificItem(1, driver).click();
 				Thread.sleep(3000);
 				HP.addCartOfSpecificItem(2, driver).click();
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 			} else {
 				Assert.assertTrue("  <INFO> Items are 0", false);
 			}
@@ -258,7 +258,7 @@ public class TC_01_Verify_login_and_basic_functionality {
 			Assert.assertTrue(INFP.firstName(driver, SHEET.getRow(1).getCell(1).getStringCellValue()));
 			Assert.assertTrue(INFP.lastName(driver, SHEET.getRow(2).getCell(1).getStringCellValue()));
 			Assert.assertTrue(INFP.pincode(driver, SHEET.getRow(3).getCell(1).getNumericCellValue()));
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			INFP.contionuToCheckout(driver).click();
 		} catch (Exception e) {
 			System.out.println("  <INFO> " + e.toString());
@@ -274,7 +274,7 @@ public class TC_01_Verify_login_and_basic_functionality {
 				Assert.assertTrue("  <INFO> ",
 						OVP.shippmentInformation(driver).getText().contains("Shipping Information:"));
 				Assert.assertTrue("  <INFO> ", OVP.priceTotalInformation(driver).getText().contains("Price Total"));
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 				OVP.finishButton(driver).click();
 			} else {
 				Assert.assertTrue("  <INFO> Cancel button - ", OVP.cancelButton(driver).isDisplayed());
@@ -287,6 +287,15 @@ public class TC_01_Verify_login_and_basic_functionality {
 
 	@And("Verify order confirmation section and get back to Home page")
 	public void verify_order_confirmation_section_and_get_back_to_home_page() {
-
+		try {
+			Assert.assertTrue("  <INFO> Verify the text - ",
+					OVP.OrderConformationUI(driver).getText().contains("Thank you for your order!"));
+			Assert.assertTrue("  <INFO> Verify the text - ", OVP.GetBacktoHome(driver).isDisplayed());
+			Thread.sleep(1000);
+			OVP.GetBacktoHome(driver).click();
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			System.out.println("  <INFO> " + e.toString());
+		}
 	}
 }
