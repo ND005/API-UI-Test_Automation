@@ -54,4 +54,12 @@ public class homePage {
 		return driverType.findElement(By.id("react-burger-menu-btn"));
 	}
 
+	public WebElement addCartOfSpecificItem(int listOfItem, WebDriver driverType) {
+		return driverType.findElement(
+				By.xpath("//div[@class='inventory_list']/div[" + listOfItem + "]//div[@class='pricebar']/button"));
+	}
+
+	public WebElement cartDetails(WebDriver driverType) {
+		return driverType.findElement(By.xpath("//div[@id='shopping_cart_container']//a[@class='shopping_cart_link']"));
+	}
 }

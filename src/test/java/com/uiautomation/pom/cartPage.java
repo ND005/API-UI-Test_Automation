@@ -15,4 +15,7 @@ public class cartPage {
 		return driver.findElement(By.xpath("//div[@class='cart_footer']/button[@name='continue-shopping']"));
 	}
 
+	public WebElement checkout(WebDriver driver) {
+		return driver.findElement(By.xpath("//div[@class='cart_footer']/button[@name='checkout']"));
+	}
 }
